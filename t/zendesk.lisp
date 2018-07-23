@@ -9,6 +9,22 @@
 
 (plan nil)
 
-;; blah blah blah.
+
+;; connect/password
+(let ((conn (connect/password "https://obscura.zendesk.com"
+                              "jdoe@example.com"
+                              "pa$$w0rd")))
+  (is-type conn '<zendesk>)
+  (is (base-url conn) "https://obscura.zendesk.com")
+  (is (auth-token conn) "Basic amRvZUBleGFtcGxlLmNvbTpwYSQkdzByZA=="))
+
+;; connect/token
+(let ((conn (connect/token "https://obscura.zendesk.com"
+                           "jdoe@example.com"
+                           "6wiIBWbGkBMo1mRDMuVwkw1EPsNkeUj95PIz2akv")))
+  (is-type conn '<zendesk>)
+  (is (base-url conn) "https://obscura.zendesk.com")
+  (is (auth-token conn) "Basic amRvZUBleGFtcGxlLmNvbS90b2tlbjo2d2lJQldiR2tCTW8xbVJETXVWd2t3MUVQc05rZVVqOTVQSXoyYWt2"))
+
 
 (finalize)
