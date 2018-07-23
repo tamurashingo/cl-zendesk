@@ -11,7 +11,7 @@
 (defsystem zendesk-test
   :author "tamura shingo"
   :license "MIT"
-  :depends-on (:cl-zendesk
+  :depends-on (:zendesk
                :prove)
   :components ((:module "t"
                 :components
