@@ -16,8 +16,8 @@
   :version "0.1"
   :author "tamura shingo"
   :license "MIT"
-  :depends-on (:cl-base64
-               :dexador)
+  :depends-on (:dexador
+               :cl-base64)
   :components ((:module "src"
                 :components
                 ((:file "zendesk"))))
