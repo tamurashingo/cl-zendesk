@@ -25,19 +25,28 @@ comming soon.
 ### search
 
 ```lisp
+
+;; fetch 100 records (100 records per 1 page)
 (defvar result (search *conn* "type:user tags:premium_support"))
+=> <result>
+
+;; this count is not fetch count.
+;; this count is all records.
 (count result)
 => 500
 
+;; results returns <user> array
 (svref (results result) 0)
 => <user>
+
 (email (svref (results result) 0))
 => "jdoe@example.com"
 
+;; fetch next page (100 records)
 (setf result (next-page result))
-=> <user>
+=> <result>
 
-
+;; iteration over all resources and pages
 (with-search-query (user *conn* "type:user tags:premium_support")
   (format T "~A:~A" (email user) (last-login-at user)))
 ;; aaa@example.com:2018-07-18T00:00:00Z
@@ -48,6 +57,8 @@ comming soon.
 
 
 ## Installation
+
+This library will be available on Quicklisp when ready for use.
 
 ## API
 
