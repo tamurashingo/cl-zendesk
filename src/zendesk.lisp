@@ -1,7 +1,7 @@
 (in-package :cl-user)
 (defpackage zendesk
   (:use :cl)
-  (:export :<zendesk>
+  (:export :<zendesk-connection>
            :base-url
            :auth-token
            :connect/password
@@ -9,21 +9,21 @@
 (in-package :zendesk)
 
 
-(defclass <zendesk> ()
+(defclass <zendesk-connection> ()
   ((base-url :initarg :base-url
              :accessor base-url
              :initform NIL)
-   (auth_token :initarg :auth-token
+   (auth-token :initarg :auth-token
                :accessor auth-token
                :initform NIL)))
 
 (defun connect/password (base-url username password)
-  (make-instance '<zendesk>
+  (make-instance '<zendesk-connection>
                  :base-url base-url
                  :auth-token (gen-header/password username password)))
 
 (defun connect/token (base-url username token)
-  (make-instance '<zendesk>
+  (make-instance '<zendesk-connection>
                  :base-url base-url
                  :auth-token (gen-header/token username token)))
 
